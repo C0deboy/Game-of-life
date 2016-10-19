@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<title>Game of life</title>
+	
+	<meta name="description" content="Play game of life">
+	<meta name="keywords" content="słowa, kluczowe, wypisane, po, porzecinku">
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+
+<body>
+	
+	<div class="rules">
+		<p>
+			Pick some cells and watch them evolve on the following rules:<br><br>
+			For a space that is 'populated':
+			<ul>
+				<li>Each cell with one or no neighbors dies, as if by solitude.</li>
+				<li>Each cell with four or more neighbors dies, as if by overpopulation.</li>
+				<li>Each cell with two or three neighbors survives.</li>
+			</ul>
+			For a space that is 'empty' or 'unpopulated':
+			<ul>
+				<li>Each cell with three neighbors becomes populated.</li>
+			</ul>
+		</p>
+	</div>
+	
+	<div class="leftbuttons">
+		<p>Simulation:</p>
+		<input id="start" class="buttons" type="button" value="Start">
+		<input id="stop" class="buttons" type="button" value="Stop">
+		<img src="img/speed.png" alt="speed">
+		<input id="speed" type="range" min="-1400" max="-20" step="20">
+	</div>
+	
+	<div id="fields" class="fields"></div>
+	
+	<div class="rightbuttons">
+		[space]
+		<input id="click" class="buttons" type="button" value="Next stage">
+		<input id="clear" class="buttons" type="button" value="Clear cells">
+		<input id="random" class="buttons" type="button" value="Random Fill">
+	</div>
+	
+	<script src="script.js"></script>
+</body>
+</html>

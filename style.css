@@ -1,0 +1,128 @@
+body {
+	background-color: black;
+	color: #efefef;
+}
+
+.fields{
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border: 5px solid grey;
+}
+
+.field {
+	height: 15px;
+	width: 15px;
+	cursor: pointer;
+	border: 1px solid grey;
+	float: left;
+	color: transparent;
+	font-size: 10px;
+}
+
+.field:hover {
+	background-color: #1a1a1a;
+}
+
+.nextRow {
+	clear: both;
+}
+
+.rules {
+	width: 300px;
+	position: absolute;
+	margin: 10px;
+}
+
+.rightbuttons {
+	position: absolute;
+	bottom: 200px;
+	right: 0px;
+	text-align: center;
+	
+}
+.leftbuttons {
+	position: absolute;
+	bottom: 150px;
+	left: 0px;
+	font-size: 27px;
+	text-align: center;
+}
+
+.leftbuttons .buttons {
+	margin: 30px;
+	display: block;
+	font-size: 20px;
+	width: 100px;
+}
+
+.rightbuttons .buttons {
+	margin: 0px 30px 30px 30px;
+	display: block;
+	font-size: 20px;
+	width: 150px;
+}
+
+.buttons:hover {
+	cursor: pointer;
+	box-shadow: 0px 0px 10px 10px grey;
+}
+
+.leftbuttons img {
+	width: 100px;
+	height: 60px;
+	display: block;
+	margin-left: 30px;
+	
+}
+
+@media (max-height: 900px){
+
+	.fields{
+		border: 2px solid grey;
+	}
+
+
+	.field {
+		height: 8px;
+		width: 8px;
+
+	}
+	
+	.rules {
+		width: 200px;
+		font-size: 10px;
+	}
+	
+	.rightbuttons {
+	
+		bottom: 50px;
+	
+	}
+	
+	.leftbuttons {
+		bottom: 30px;
+		font-size: 10px;
+		width: 80px;
+	}
+
+	.leftbuttons .buttons {
+			font-size: 10px;
+			width: 50px;
+	}
+
+	.rightbuttons .buttons {
+		
+		font-size: 10px;
+		width: 100px;
+	}
+	
+	.leftbuttons img {
+		width: 70px;
+		height: 40px;
+		
+	
+	}
+
+}
