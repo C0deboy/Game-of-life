@@ -1,6 +1,13 @@
-﻿(function () {	//IIFE
+﻿(function (document) {	//IIFE
 	
 	"use strict";
+	
+	//Ilość rzędów
+	var xNumb=45;
+	//Ilość kolumn
+	var yNumb=45;	
+	
+	var id=0;
 	
 	function insert(i)
 	{
@@ -14,7 +21,7 @@
 		{
 			for (var x=0; x<xNumb; x++)
 			{
-				if(idTable[x][y]==id)
+				if(idTable[x][y]===id)
 				{
 					intX=x;
 					intY=y;
@@ -24,8 +31,8 @@
 		
 		//Sprawdzanie i ustawianie stanu:
 		
-		if(stateTable[intX][intY]==0) stateTable[intX][intY]=1;
-		else if(stateTable[intX][intY]==1) stateTable[intX][intY]=0;
+		if(stateTable[intX][intY]===0) stateTable[intX][intY]=1;
+		else if(stateTable[intX][intY]===1) stateTable[intX][intY]=0;
 		
 		refreshCells();	
 	}
@@ -40,8 +47,8 @@
 			{
 				var id = idTable[x][y];
 				
-				if(stateTable[x][y]==0) document.getElementById(id).style.background="black";
-				else if(stateTable[x][y]==1) document.getElementById(id).style.background="yellow";
+				if(stateTable[x][y]===0) document.getElementById(id).style.background="black";
+				else if(stateTable[x][y]===1) document.getElementById(id).style.background="yellow";
 			}
 		}
 	}
@@ -55,21 +62,21 @@
 			for(var x=0;x<xNumb;x++)
 			{
 				var neighborsNumber=0;
-				try{ if(stateTable[x-1][y-1]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x][y-1]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x+1][y-1]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x-1][y]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x+1][y]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x-1][y+1]==1) neighborsNumber++; } catch(err){}
-				try{ if(stateTable[x][y+1]==1) neighborsNumber++; }catch(err){}
-				try{ if(stateTable[x+1][y+1]==1) neighborsNumber++; }catch(err){}
+				try{ if(stateTable[x-1][y-1]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x][y-1]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x+1][y-1]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x-1][y]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x+1][y]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x-1][y+1]===1) neighborsNumber++; } catch(err){}
+				try{ if(stateTable[x][y+1]===1) neighborsNumber++; }catch(err){}
+				try{ if(stateTable[x+1][y+1]===1) neighborsNumber++; }catch(err){}
 				
 				//Określanie przyszłego stanu komórki:
 				
-				if(neighborsNumber==3&&stateTable[x][y]==0)futureStateTable[x][y]=1;
-				else if(neighborsNumber!=3&&stateTable[x][y]==0)futureStateTable[x][y]=0;
-				else if((neighborsNumber>1&&neighborsNumber<4)&&stateTable[x][y]==1)futureStateTable[x][y]=1;
-				else if((neighborsNumber<2||neighborsNumber>3)&&stateTable[x][y]==1)futureStateTable[x][y]=0;
+				if(neighborsNumber===3&&stateTable[x][y]===0)futureStateTable[x][y]=1;
+				else if(neighborsNumber!=3&&stateTable[x][y]===0)futureStateTable[x][y]=0;
+				else if((neighborsNumber>1&&neighborsNumber<4)&&stateTable[x][y]===1)futureStateTable[x][y]=1;
+				else if((neighborsNumber<2||neighborsNumber>3)&&stateTable[x][y]===1)futureStateTable[x][y]=0;
 			}
 		}
 		
@@ -136,7 +143,7 @@
 	
 	function simulationStart()
 	{
-		if(simulation==null)
+		if(simulation===null)
 		{
 			speed=document.getElementById("speed").value*-1;
 			simulation = setInterval(evolution,speed);
@@ -153,14 +160,14 @@
 	}
 		
 	//Key listener
-	window.onkeypress = function(e) 
+	document.addEventListener("keydown", function(e) 
 	{
 		var key = e.keyCode ? e.keyCode : e.which;
-		if (key == 32) 
+		if (key === 32) 
 		{
 		   evolution();
 		}
-	}
+	});
 	
 	//Eventy
 	document.getElementById("click").addEventListener("mousedown", evolution);
@@ -170,10 +177,7 @@
 	document.getElementById("stop").addEventListener('click', simulationStop);
 	document.getElementById("speed").addEventListener("input", refreshSpeed);
 	
-	//Ilość rzędów
-	var xNumb=45;
-	//Ilość kolumn
-	var yNumb=45;	
+	
 		
 	//Deklaracja tablic:
 	var stateTable = [];
@@ -195,7 +199,7 @@
 	}
 
 	//Tworzenie divów:
-	var id=0;
+
 	
 	for (var y=0; y<yNumb; y++)
 	{
@@ -204,7 +208,6 @@
 			var field = document.createElement('div');
 			field.classList.add('field');
 			field.id = id;
-			field.textContent =id;
 			document.getElementById('fields').appendChild(field);
 			
 			idTable[x][y]=id;
@@ -221,10 +224,10 @@
 	{
 		if(e.target.classList.contains('field'))
 		{
-			parseInt( e.target.id );
-			insert( e.target.id );
+			var id = parseInt( e.target.id );
+			insert(id);
 		}
 		
 	});
 
-})(); //IFFE
+})(document); //IFFE
